@@ -5,9 +5,10 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 RUN curl https://dl.min.io/client/mc/release/linux-amd64/mc \
-  --create-dirs \
-  -o /usr/local/bin/mc && \
-  chmod +x /usr/local/bin/mc
+    --create-dirs \
+    -o $HOME/minio-binaries/mc  
+
+RUN chmod +x $HOME/minio-binaries/mc
 
 RUN mkdir -p /backup/
 COPY backup.sh /backup/backup.sh

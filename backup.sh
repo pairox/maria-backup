@@ -26,7 +26,7 @@ backup_database() {
     fi
 
     # Проверка структуры файла бэкапа
-BEGIN=$(head -n 10 "$backup_file" | grep -c '^-- MariaDB dump')
+BEGIN=$(head -n 10 "$backup_file" | grep -c 'dump')
 END=$(tail -n 1 "$backup_file" | grep -c '^-- Dump completed')    
 
     if [ "$BEGIN" -eq 1 ] && [ "$END" -eq 1 ]; then
