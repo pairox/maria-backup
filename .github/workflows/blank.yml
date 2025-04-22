@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/your-image-name
+  IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/maria-backup
 
 jobs:
   build-and-push:
