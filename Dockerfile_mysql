@@ -1,21 +1,14 @@
-FROM debian:12
-
-# Добавляем репозиторий MySQL 8.0
-RUN apt-get update && apt-get install -y gnupg ca-certificates curl wget lsb-release
-
-RUN curl -fsSL https://repo.mysql.com/RPM-GPG-KEY-mysql-2022 | gpg --dearmor -o /usr/share/keyrings/mysql.gpg && \
-    echo "deb [signed-by=/usr/share/keyrings/mysql.gpg] https://repo.mysql.com/apt/debian $(lsb_release -cs) mysql-8.0" > /etc/apt/sources.list.d/mysql.list
+FROM mysql:8.0-debian⁠
 
 RUN apt-get update && apt-get install -y \
-    mysql-client=8.0.40* \
-    iputils-ping zip cron \
+    ca-certificates curl wget iputils-ping zip cron \
     && rm -rf /var/lib/apt/lists/*
 
-# minio mc
 RUN curl https://dl.min.io/client/mc/release/linux-amd64/mc \
-  --create-dirs -o /usr/local/bin/mc && chmod +x /usr/local/bin/mc
+  --create-dirs \
+  -o /usr/local/bin/mc && \
+  chmod +x /usr/local/bin/mc
 
-# копирование файлов
 RUN mkdir -p /backup/
 COPY backup.sh /backup/backup.sh
 RUN chmod +x /backup/backup.sh
