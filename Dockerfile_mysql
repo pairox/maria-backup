@@ -1,0 +1,19 @@
+FROM mysql:8.0.40
+
+RUN apt-get update && apt-get install -y \
+    ca-certificates curl wget iputils-ping zip cron \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN curl https://dl.min.io/client/mc/release/linux-amd64/mc \
+  --create-dirs \
+  -o /usr/local/bin/mc && \
+  chmod +x /usr/local/bin/mc
+
+RUN mkdir -p /backup/
+COPY backup.sh /backup/backup.sh
+RUN chmod +x /backup/backup.sh
+
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
