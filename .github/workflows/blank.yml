@@ -38,3 +38,11 @@ jobs:
         file: ./Dockerfile_mysql
         push: true
         tags: ${{ env.IMAGE_NAME }}:mysqllatest
+
+    - name: Build and Push postgres16
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        file: ./Dockerfile_pg16
+        push: true
+        tags: ${{ env.IMAGE_NAME }}:postgres16       
