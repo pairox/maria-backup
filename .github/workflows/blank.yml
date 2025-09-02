@@ -45,4 +45,12 @@ jobs:
         context: .
         file: ./Dockerfile_pg16
         push: true
-        tags: ${{ env.IMAGE_NAME }}:postgres16       
+        tags: ${{ env.IMAGE_NAME }}:postgres16
+     
+    - name: Build and Push postgres15
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        file: ./Dockerfile_pg15
+        push: true
+        tags: ${{ env.IMAGE_NAME }}:postgres15   

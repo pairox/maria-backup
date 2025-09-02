@@ -1,0 +1,19 @@
+FROM postgres:15-bookworm
+RUN apt-get update
+RUN apt-get install -y ca-certificates curl wget iputils-ping zip cron
+RUN rm -rf /var/lib/apt/lists/*
+
+RUN curl https://dl.min.io/client/mc/release/linux-amd64/mc \
+  --create-dirs \
+  -o /root/minio-binaries/mc
+
+RUN chmod +x /root/minio-binaries/mc
+
+RUN mkdir /backup/
+COPY postgres.sh /backup/postgres.sh
+RUN chmod +x /backup/postgres.sh
+
+COPY entrypoint-postgres.sh /entrypoint-postgres.sh
+RUN chmod +x /entrypoint-postgres.sh
+
+#CMD ["/entrypoint.sh"]
