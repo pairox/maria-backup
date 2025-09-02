@@ -23,29 +23,29 @@ jobs:
         username: ${{ secrets.GHCR_USERNAME }}
         password: ${{ secrets.GHCR_TOKEN }}
 
-    - name: Build and Push marialatest
-      uses: docker/build-push-action@v5
-      with:
-        context: .
-        file: ./Dockerfile
-        push: true
-        tags: ${{ env.IMAGE_NAME }}:marialatest
+    # - name: Build and Push marialatest
+    #   uses: docker/build-push-action@v5
+    #   with:
+    #     context: .
+    #     file: ./Dockerfile
+    #     push: true
+    #     tags: ${{ env.IMAGE_NAME }}:marialatest
 
-    - name: Build and Push mysqllatest
-      uses: docker/build-push-action@v5
-      with:
-        context: .
-        file: ./Dockerfile_mysql
-        push: true
-        tags: ${{ env.IMAGE_NAME }}:mysqllatest
+    # - name: Build and Push mysqllatest
+    #   uses: docker/build-push-action@v5
+    #   with:
+    #     context: .
+    #     file: ./Dockerfile_mysql
+    #     push: true
+    #     tags: ${{ env.IMAGE_NAME }}:mysqllatest
 
-    - name: Build and Push postgres16
-      uses: docker/build-push-action@v5
-      with:
-        context: .
-        file: ./Dockerfile_pg16
-        push: true
-        tags: ${{ env.IMAGE_NAME }}:postgres16
+    # - name: Build and Push postgres16
+    #   uses: docker/build-push-action@v5
+    #   with:
+    #     context: .
+    #     file: ./Dockerfile_pg16
+    #     push: true
+    #     tags: ${{ env.IMAGE_NAME }}:postgres16
      
     - name: Build and Push postgres15
       uses: docker/build-push-action@v5
